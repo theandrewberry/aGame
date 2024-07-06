@@ -1,0 +1,70 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Taji\\GitHub\\aGame\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{EF1B34FA-5092-B0C7-BABC-425B3F033CDA}|Assembly-CSharp.csproj|C:\\Taji\\GitHub\\aGame\\assets\\camerafollow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF1B34FA-5092-B0C7-BABC-425B3F033CDA}|Assembly-CSharp.csproj|solutionrelative:assets\\camerafollow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF1B34FA-5092-B0C7-BABC-425B3F033CDA}|Assembly-CSharp.csproj|c:\\taji\\github\\agame\\assets\\projectilespawn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF1B34FA-5092-B0C7-BABC-425B3F033CDA}|Assembly-CSharp.csproj|solutionrelative:assets\\projectilespawn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF1B34FA-5092-B0C7-BABC-425B3F033CDA}|Assembly-CSharp.csproj|C:\\Taji\\GitHub\\aGame\\assets\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF1B34FA-5092-B0C7-BABC-425B3F033CDA}|Assembly-CSharp.csproj|solutionrelative:assets\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ProjectileSpawn.cs",
+              "DocumentMoniker": "C:\\Taji\\GitHub\\aGame\\Assets\\ProjectileSpawn.cs",
+              "RelativeDocumentMoniker": "Assets\\ProjectileSpawn.cs",
+              "ToolTip": "C:\\Taji\\GitHub\\aGame\\Assets\\ProjectileSpawn.cs",
+              "RelativeToolTip": "Assets\\ProjectileSpawn.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-06T22:39:02.447Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CameraFollow.cs",
+              "DocumentMoniker": "C:\\Taji\\GitHub\\aGame\\Assets\\CameraFollow.cs",
+              "RelativeDocumentMoniker": "Assets\\CameraFollow.cs",
+              "ToolTip": "C:\\Taji\\GitHub\\aGame\\Assets\\CameraFollow.cs",
+              "RelativeToolTip": "Assets\\CameraFollow.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-06T22:31:56.983Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PlayerController.cs",
+              "DocumentMoniker": "C:\\Taji\\GitHub\\aGame\\Assets\\PlayerController.cs",
+              "RelativeDocumentMoniker": "Assets\\PlayerController.cs",
+              "ToolTip": "C:\\Taji\\GitHub\\aGame\\Assets\\PlayerController.cs",
+              "RelativeToolTip": "Assets\\PlayerController.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAABQAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-06T22:22:52.571Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
