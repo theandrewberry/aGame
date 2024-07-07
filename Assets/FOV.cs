@@ -31,6 +31,8 @@ public class FieldOfView : MonoBehaviour
 
     private void Update()
     {
+         transform.Rotate(0, 100 * Time.deltaTime, 0);
+
         if(canSeePlayer)
         {
             Aim();
