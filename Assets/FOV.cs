@@ -1,69 +1,60 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class FieldOfView : MonoBehaviour
 {
-    public float viewRadius = 5f;
-    public float viewAngle = 90f;
-    public int meshResolution = 10;
+    public float radius;
+    [Range(0,360)]
+    public float angle;
+
+    public GameObject playerRef;
+
     public LayerMask targetMask;
-    public LayerMask obstacleMask;
-    public MeshFilter viewMeshFilter;
+    public LayerMask obstructionMask;
 
-    Mesh viewMesh;
+    public bool canSeePlayer;
 
-    void Start()
+    private void Start()
     {
-        viewMesh = new Mesh();
-        viewMesh.name = "View Mesh";
-        viewMeshFilter.mesh = viewMesh;
+        playerRef = GameObject.FindGameObjectWithTag("Player");
+        StartCoroutine(FOVRoutine());
     }
 
-    void LateUpdate()
+    private IEnumerator FOVRoutine()
     {
-        DrawFieldOfView();
-    }
+        WaitForSeconds wait = new WaitForSeconds(0.2f);
 
-    void DrawFieldOfView()
-    {
-        int stepCount = Mathf.RoundToInt(viewAngle * meshResolution);
-        float stepAngleSize = viewAngle / stepCount;
-        Vector3[] viewPoints = new Vector3[stepCount + 1];
-
-        for (int i = 0; i <= stepCount; i++)
+        while (true)
         {
-            float angle = transform.eulerAngles.y - viewAngle / 2 + stepAngleSize * i;
-            viewPoints[i] = transform.position + DirFromAngle(angle, true) * viewRadius;
+            yield return wait;
+            FieldOfViewCheck();
         }
+    }
 
-        int vertexCount = viewPoints.Length + 1;
-        Vector3[] vertices = new Vector3[vertexCount];
-        int[] triangles = new int[(vertexCount - 2) * 3];
+    private void FieldOfViewCheck()
+    {
+        Collider[] rangeChecks = Physics.OverlapSphere(transform.position, radius, targetMask);
 
-        vertices[0] = Vector3.zero;
-        for (int i = 0; i < vertexCount - 1; i++)
+        if (rangeChecks.Length != 0)
         {
-            vertices[i + 1] = transform.InverseTransformPoint(viewPoints[i]);
+            Transform target = rangeChecks[0].transform;
+            Vector3 directionToTarget = (target.position - transform.position).normalized;
 
-            if (i < vertexCount - 2)
+            if (Vector3.Angle(transform.forward, directionToTarget) < angle / 2)
             {
-                triangles[i * 3] = 0;
-                triangles[i * 3 + 1] = i + 1;
-                triangles[i * 3 + 2] = i + 2;
+                float distanceToTarget = Vector3.Distance(transform.position, target.position);
+
+                if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))
+                    canSeePlayer = true;
+                else
+                    canSeePlayer = false;
             }
+            else
+                canSeePlayer = false;
         }
-
-        viewMesh.Clear();
-        viewMesh.vertices = vertices;
-        viewMesh.triangles = triangles;
-        viewMesh.RecalculateNormals();
-    }
-
-    Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal)
-    {
-        if (!angleIsGlobal)
-        {
-            angleInDegrees += transform.eulerAngles.y;
-        }
-        return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
+        else if (canSeePlayer)
+            canSeePlayer = false;
     }
 }
