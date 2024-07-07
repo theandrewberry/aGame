@@ -16,10 +16,26 @@ public class FieldOfView : MonoBehaviour
 
     public bool canSeePlayer;
 
+    public GameObject bulletPrefab;    // Reference to the bullet prefab
+    public Transform bulletSpawn;      // Reference to the bullet spawn point
+    public float bulletSpeed = 20f; 
+
+    private float shootCooldown = 1f; // Time in seconds between shots
+    private float lastShotTime;       // Time when the last shot was fired
+
     private void Start()
     {
         playerRef = GameObject.FindGameObjectWithTag("Player");
         StartCoroutine(FOVRoutine());
+    }
+
+    private void Update()
+    {
+        if(canSeePlayer)
+        {
+            Aim();
+            Shoot();
+        }
     }
 
     private IEnumerator FOVRoutine()
@@ -56,5 +72,33 @@ public class FieldOfView : MonoBehaviour
         }
         else if (canSeePlayer)
             canSeePlayer = false;
+    }
+
+    //used to shoot bullet at enemy
+    void Shoot()
+    {
+        if (Time.time - lastShotTime >= shootCooldown)
+        {
+            // Instantiate the bullet at the bulletSpawn position and rotation
+            GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
+            Rigidbody rb = bullet.GetComponent<Rigidbody>();
+            rb.velocity = bulletSpawn.forward * bulletSpeed;
+
+            // Update the time when the last shot was fired
+            lastShotTime = Time.time;
+        }
+    }
+
+    //used to aim at enemy
+    void Aim()
+    {
+        // Calculate the direction to the player
+        Vector3 directionToPlayer = (playerRef.transform.position - transform.position).normalized;
+
+        // Calculate the new rotation
+        Quaternion lookRotation = Quaternion.LookRotation(directionToPlayer);
+
+        // Apply the rotation to the enemy
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
     }
 }
