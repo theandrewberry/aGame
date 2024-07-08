@@ -26,9 +26,12 @@ public class PlayerController : MonoBehaviour
     void Move()
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis("Vertical");
 
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, 0) * moveSpeed * Time.deltaTime;
-        transform.Translate(movement, Space.Self);
+        if(transform.position.z >= 2 || transform.position.z <= 2){
+            Vector3 movement = new Vector3(moveVertical, 0.0f, -moveHorizontal) * moveSpeed * Time.deltaTime;
+            transform.Translate(movement, Space.Self);
+        }
     }
 
     void Jump()
@@ -57,14 +60,10 @@ public class PlayerController : MonoBehaviour
             // Only change the Z rotation of the player
             arm.transform.rotation = Quaternion.Euler(0, 0, angle);
 
-            // Output debug information
-            Debug.Log("Mouse Click Position: " + hit.point);
-            Debug.Log("Player Rotation: " + transform.rotation.eulerAngles);
         }
         else
         {
-            // Output debug information if the raycast does not hit
-            Debug.Log("Raycast did not hit any objects.");
+
         }
     }
 }
